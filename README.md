@@ -16,13 +16,18 @@ Simple YouTube auto-play locker extension with mpv integration. (Loads much fast
 - Send audio/video to mpv/terminal player
 - Send & close Firefox
 
-Adapt the `path` to termtube folder in `mpv_bridge.json`
-
 **Install:**
+
+Adapt the `path` to termtube folder (where you cloned) in `mpv_bridge.json`
+
 ```bash
 ./install_bridge.sh
 ```
+This creates: 
 
+```
+~/.mozilla/native-messaging-hosts/mpv_bridge.json
+```
 Then load extension in Firefox from:
 
 `about:debugging#/runtime/this-firefox`
