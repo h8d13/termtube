@@ -25,8 +25,3 @@ EOF
 echo "Native messaging host installed successfully!"
 echo "Manifest location: $MANIFEST_DIR/mpv_bridge.json"
 echo "Bridge script location: $SCRIPT_DIR/mpv_bridge.py"
-echo ""
-echo "Next steps:"
-echo "1. Create a 48x48 icon.png file in $SCRIPT_DIR"
-echo "2. Load the extension in Firefox from about:debugging"
-echo "3. Test the 'Send to mpv' button on a YouTube video"
