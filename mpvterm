@@ -1,0 +1,46 @@
+#!/bin/bash
+# MPV Audio Visualizer Script with terminal-based visualization
+# Needs: cava yt-dlp mpv
+
+if [ -z "$1" ]; then
+    echo "Usage: ./mpv-visualizer.sh <URL>"
+    echo ""
+    echo "Plays audio with CAVA visualizer in terminal"
+    echo "Press 'q' in mpv or Ctrl+C to quit"
+    exit 1
+fi
+
+URL="$1"
+
+# Cleanup function
+cleanup() {
+    echo -e "\nStopping playback..."
+    kill $MPV_PID 2>/dev/null
+    exit 0
+}
+
+# Set trap for cleanup
+trap cleanup SIGINT SIGTERM
+
+# Start mpv in background with no video
+mpv --no-video --really-quiet "$URL" &
+MPV_PID=$!
+
+# Give mpv a moment to start
+sleep 1
+
+# Check if mpv is still running
+if ! kill -0 $MPV_PID 2>/dev/null; then
+    echo "Failed to start mpv"
+    exit 1
+fi
+
+echo "Now playing: $URL"
+echo "Visualizer: CAVA (press q to quit)"
+echo ""
+
+# Start cava visualizer
+cava
+
+# When cava exits, stop mpv
+cleanup
